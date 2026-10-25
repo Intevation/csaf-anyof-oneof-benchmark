@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "integer",
+  "oneOf": [
+    {
+      "multipleOf": 2
+    },
+    {
+      "multipleOf": 3
+    }
+  ]
+}

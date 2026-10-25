@@ -1,0 +1,10 @@
+[package]
+name = "anyof-oneof-rust"
+version = "0.1.0"
+edition = "2024"
+default-run = "anyof-oneof-rust"
+publish = false
+
+[dependencies]
+jsonschema = "0.51.0"
+serde_json = "1.0.151"

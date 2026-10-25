@@ -1,0 +1,113 @@
+[
+  {
+    "schema": "overlap",
+    "name": "only first branch (4)",
+    "instance": 4,
+    "anyOf": true,
+    "oneOf": true
+  },
+  {
+    "schema": "overlap",
+    "name": "only second branch (9)",
+    "instance": 9,
+    "anyOf": true,
+    "oneOf": true
+  },
+  {
+    "schema": "overlap",
+    "name": "both branches (6)",
+    "instance": 6,
+    "anyOf": true,
+    "oneOf": false
+  },
+  {
+    "schema": "overlap",
+    "name": "no branch (5)",
+    "instance": 5,
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "EID only",
+    "instance": [
+      "EID-0001"
+    ],
+    "anyOf": true,
+    "oneOf": true
+  },
+  {
+    "schema": "entity-refs",
+    "name": "EGID only",
+    "instance": [
+      "EGID-CERTs"
+    ],
+    "anyOf": true,
+    "oneOf": true
+  },
+  {
+    "schema": "entity-refs",
+    "name": "EID and EGID mixed",
+    "instance": [
+      "EID-0001",
+      "EGID-CERTs",
+      "EID-org.example"
+    ],
+    "anyOf": true,
+    "oneOf": true
+  },
+  {
+    "schema": "entity-refs",
+    "name": "neither pattern",
+    "instance": [
+      "XID-1"
+    ],
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "valid and invalid mixed",
+    "instance": [
+      "EID-1",
+      "nope"
+    ],
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "empty array",
+    "instance": [],
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "duplicate items",
+    "instance": [
+      "EID-1",
+      "EID-1"
+    ],
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "EID prefix without token",
+    "instance": [
+      "EID-"
+    ],
+    "anyOf": false,
+    "oneOf": false
+  },
+  {
+    "schema": "entity-refs",
+    "name": "non-string item",
+    "instance": [
+      1
+    ],
+    "anyOf": false,
+    "oneOf": false
+  }
+]
