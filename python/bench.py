@@ -38,6 +38,9 @@ def main() -> None:
         validators[keyword] = Draft202012Validator(schema, registry=registry)
 
     for doc_path in sorted((bench_dir / "docs").glob("*.json")):
+        if doc_path.stem.startswith("csaf-100000actions-"):
+            print(f"Skipping {doc_path.name}: projected Python batch runtime exceeds 24 hours", file=sys.stderr)
+            continue
         for rep in range(reps + 1):  # rep 0 is warm-up
             # Alternate which schema runs first so cache effects do not always favor the same variant.
             order = ("anyOf", "oneOf")
