@@ -13,7 +13,6 @@ def main() -> None:
     results_dir = Path(sys.argv[1])
     total_times: dict[tuple[str, str, str], list[float]] = defaultdict(list)
     validation_times: dict[tuple[str, str, str], list[float]] = defaultdict(list)
-    comparisons: set[tuple[str, str]] = set()
 
     for csv_path in sorted(results_dir.glob("*.csv")):
         with csv_path.open() as csv_file:
@@ -24,10 +23,10 @@ def main() -> None:
                 if int(rep) < 1:
                     continue
 
-                total_ms = float(load_ms) + float(validate_ms)
-                total_times[library, document, keyword].append(total_ms)
+                if load_ms:
+                    total_ms = float(load_ms) + float(validate_ms)
+                    total_times[library, document, keyword].append(total_ms)
                 validation_times[library, document, keyword].append(float(validate_ms))
-                comparisons.add((library, document))
 
     for title, times in (
         ("JSON file read + parse + validate", total_times),
@@ -37,7 +36,7 @@ def main() -> None:
         print()
         print("| library | document | anyOf ms | oneOf ms | oneOf/anyOf |")
         print("|---|---|--:|--:|--:|")
-        for library, document in sorted(comparisons):
+        for library, document in sorted({(library, document) for library, document, _ in times}):
             any_of_ms = statistics.median(times[library, document, "anyOf"])
             one_of_ms = statistics.median(times[library, document, "oneOf"])
             ratio = one_of_ms / any_of_ms
